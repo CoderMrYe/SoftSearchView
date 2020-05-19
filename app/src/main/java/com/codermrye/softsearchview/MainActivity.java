@@ -2,6 +2,7 @@ package com.codermrye.softsearchview;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         search = (SoftSearchView) findViewById(R.id.search);
-        search.addTextChangedListener(new OnSoftSearchViewListener() {
+        search.setTextWatcher(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

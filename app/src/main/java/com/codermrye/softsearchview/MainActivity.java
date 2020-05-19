@@ -1,6 +1,7 @@
 package com.codermrye.softsearchview;
 
 import android.os.Bundle;
+import android.text.Editable;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,14 +12,30 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager mLayoutManager;
-    private ViewUpSearch search;
+    private SoftSearchView search;
     private boolean isExpand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        search = (ViewUpSearch) findViewById(R.id.search);
+        search = (SoftSearchView) findViewById(R.id.search);
+        search.addTextChangedListener(new OnSoftSearchViewListener() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         isExpand = true;
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

@@ -7,7 +7,4 @@
     android:background="#0096db"
     android:gravity="center"
     android:textColor="@android:color/white"
-    android:textSize="15sp"
-    >
-
-</TextView>
+    android:textSize="15sp"/>

@@ -11,42 +11,69 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
+            android:id="@+id/list_query"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:visibility="gone">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:src="@drawable/history" />
+            <ListView
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:id="@+id/list_history"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
 
             <TextView
-                android:layout_weight="1"
-                android:text="@string/test_text"
-                android:layout_marginLeft="6dp"
-                android:gravity="center|start"
+                android:id="@+id/list_history_delete"
+                android:layout_margin="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/delete2" />
+                android:layout_height="wrap_content"
+                android:text="@string/test_text"
+                android:gravity="center"/>
         </LinearLayout>
 
-        <TextView
-            android:gravity="center"
-            android:text="@string/test_text"
-            android:layout_width="match_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_query"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <EditText
+            android:id="@+id/edit_query"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"/>
+            android:maxLines="1"
+            android:background="@null"
+            android:textColor="@color/green"
+            android:hint="@string/test_text"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"/>
+
+        <ImageView
+            android:background="@drawable/delete"
+            android:layout_marginRight="15dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+        <ImageView
+            android:background="@drawable/search"
+            android:layout_marginRight="23dp"
+            android:layout_marginEnd="23dp"
+            android:id="@+id/search"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
     </LinearLayout>
 
     <TextView
@@ -55,15 +82,7 @@
         android:layout_height="60dp"
         android:background="@drawable/up_search_circle"
         android:visibility="invisible" />
-    <EditText
-        android:background="@null"
-        android:textColor="@color/green"
-        android:hint="@string/test_text"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
     <ImageView
         android:background="@drawable/voice"
         android:layout_marginTop="20dp"
@@ -72,26 +91,5 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="20dp" />
-    <ImageView
-        android:background="@drawable/search"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="23dp"
-        android:id="@+id/search"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="23dp" />
-    <ImageView
-        android:background="@drawable/delete"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="60dp"
-        android:id="@+id/delete"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="60dp" />
-    <LinearLayout
-        android:layout_marginTop="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
 </FrameLayout>

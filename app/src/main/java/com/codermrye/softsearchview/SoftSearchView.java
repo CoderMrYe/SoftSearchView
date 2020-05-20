@@ -3,6 +3,8 @@ package com.codermrye.softsearchview;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,8 +12,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SoftSearchView extends LinearLayout{
 
@@ -21,12 +26,16 @@ public class SoftSearchView extends LinearLayout{
     private View query;
     private float scale;
     private View circle;
+
+    private Context mContext;
     // 将监听事件封装
     private EditText edit_query;
     private ImageView img_delete;
+    private ImageView img_search;
 
     public SoftSearchView(Context context) {
         super(context);
+        this.mContext = context;
         initView(context);
     }
 
@@ -35,14 +44,14 @@ public class SoftSearchView extends LinearLayout{
         initView(context);
     }
 
-    private ArrayList<OnSoftSearchViewListener> mListeners;
-    public void addTextChangedListener(OnSoftSearchViewListener listener) {
+    private ArrayList<OnSearchListener> mListeners;
+    public void addTextChangedListener(OnSearchListener listener) {
         if (mListeners == null) {
-            mListeners = new ArrayList<OnSoftSearchViewListener>();
+            mListeners = new ArrayList<OnSearchListener>();
         }
         mListeners.add(listener);
     }
-    public void removeTextChangedListener(OnSoftSearchViewListener listener) {
+    public void removeTextChangedListener(OnSearchListener listener) {
         if (mListeners != null) {
             int i = mListeners.indexOf(listener);
 
@@ -73,6 +82,30 @@ public class SoftSearchView extends LinearLayout{
             @Override
             public void onClick(View v) {
                 edit_query.setText("");
+            }
+        });
+        img_search = findViewById(R.id.img_search);
+        img_search.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 将搜索内容记录到历史搜索中去
+                String search_str = edit_query.getText().toString();
+                if(TextUtils.equals(search_str,"")){
+                    Toast.makeText(mContext,"没有输入搜索文本",Toast.LENGTH_LONG).show();
+                }else {
+                    SharedPreferences shar  = mContext.getSharedPreferences("dataSharedPreferences",MODE_PRIVATE);
+                    String history1 = shar.getString("history1","");
+                    String history2 = shar.getString("history2","");
+                    SharedPreferences shpData = mContext.getSharedPreferences("dataSharedPreferences",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = shpData.edit();
+                    editor.putString("history1",search_str);
+                    editor.putString("history2",history1);
+                    editor.putString("history3",history2);
+                    editor.apply();
+                    // 刷新搜索历史列表
+                }
+                // 将搜索的文本内容回调出去
+
             }
         });
     }

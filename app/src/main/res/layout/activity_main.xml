@@ -20,29 +20,17 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <ImageView
+        android:foreground="@drawable/history"
         android:src="@drawable/history"
-        android:background="@drawable/history"
         android:layout_width="48dp"
         android:layout_height="60dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/test_text" />
+
+
+
+
 
 
 

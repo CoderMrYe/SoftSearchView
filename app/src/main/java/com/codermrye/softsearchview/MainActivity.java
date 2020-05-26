@@ -3,6 +3,7 @@ package com.codermrye.softsearchview;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,12 +49,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                Log.d("TAG",dx+","+dy);
                 int firstPosition = mLayoutManager.findFirstCompletelyVisibleItemPosition();
                 if (firstPosition != 0 && isExpand) {
                     search.updateShow(false);
                     isExpand = false;
                 }
-                if (firstPosition == 0 && !isExpand) {
+                if ((firstPosition == 0 || dy<0) && !isExpand) {
                     search.updateShow(true);
                     isExpand = true;
                 }
